@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "330344270546",
+    "project_id": "socielmedia-65f3d",
+    "storage_bucket": "socielmedia-65f3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330344270546:android:1ebb5b5c57e4d98117fb0b",
+        "android_client_info": {
+          "package_name": "com.example.socielmedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTY4JhHu3XivIeGm4VoZgoOwpnA8gO_bM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
