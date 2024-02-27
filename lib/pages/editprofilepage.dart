@@ -167,6 +167,7 @@ import 'package:image_picker/image_picker.dart';
 import '../components/button.dart';
 
 class EditProfilePage extends StatefulWidget {
+  String imageUrl;
   String name;
   String dob;
   String gender;
@@ -174,7 +175,7 @@ class EditProfilePage extends StatefulWidget {
   String qualification;
   String job;
   String hobbies;
-  EditProfilePage({required this.name,required this.dob,required this.address,
+  EditProfilePage({required this.imageUrl,required this.name,required this.dob,required this.address,
     required this.gender,required this.qualification,
     required this.job,required this.hobbies});
   @override
@@ -184,6 +185,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  late String _imageUrl;
    late String _name;
    late String _dob;
   late String _gender;

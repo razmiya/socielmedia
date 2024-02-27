@@ -209,6 +209,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => EditProfilePage(
+                       imageUrl: "",
                       name: _profileData?['name'],
                       dob: _profileData?['dob'],
                       address: _profileData?['address'],

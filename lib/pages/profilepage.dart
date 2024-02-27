@@ -22,6 +22,8 @@ class _ProfilePageState extends State<ProfilePage> {
   final ImagePicker _picker = ImagePicker();
 
   File? _image;
+  String imageUrl = '';
+
   TextEditingController _nameController = TextEditingController();
   TextEditingController _dobController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -31,28 +33,58 @@ class _ProfilePageState extends State<ProfilePage> {
   TextEditingController _genderController = TextEditingController();
   TextEditingController _hobbiesController = TextEditingController();
 
+  // Future<void> _uploadImage() async {
+  //   final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+  //
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       _image = File(pickedFile.path);
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  //   if (_image != null) {
+  //     Reference ref = _storage.ref().child('profile_images/${DateTime.now().toString()}');
+  //     UploadTask uploadTask = ref.putFile(_image!);
+  //     TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
+  //     imageUrl = await taskSnapshot.ref.getDownloadURL();
+  //     print(imageUrl);
+  //   }
+  // }
+
   Future<void> _uploadImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        print(_image);
       } else {
         print('No image selected.');
       }
     });
-  }
-
-  Future<void> _saveProfile() async {
-    String imageUrl = '';
 
     if (_image != null) {
       Reference ref = _storage.ref().child('profile_images/${DateTime.now().toString()}');
       UploadTask uploadTask = ref.putFile(_image!);
       TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
-      imageUrl = await taskSnapshot.ref.getDownloadURL();
-    }
+      String imageUrl = await taskSnapshot.ref.getDownloadURL();
 
+      // Save the image URL into Firestore
+      await _firestore.collection('profile_images').add({
+        'image_url': imageUrl,
+        // Optionally, you can associate the image with a user by storing user ID or email
+        'user_email': widget.email,
+        // You can also include a timestamp or any other relevant data
+        'timestamp': DateTime.now(),
+      });
+
+      print('Image uploaded and URL saved to Firestore: $imageUrl');
+    }
+  }
+
+  Future<void> _saveProfile() async {
+    
     await _firestore.collection('profiles').add({
       'name': _nameController.text,
       'dob': _dobController.text,

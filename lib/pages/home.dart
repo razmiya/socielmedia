@@ -75,11 +75,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Colors.grey[500],
+      //Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text("The Screen",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
         centerTitle: true,
-        backgroundColor: Colors.grey[700],
+        backgroundColor: Colors.grey[800],
         actions: [
           //sign out button
           IconButton(
@@ -115,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                             message: post["Message"],
                             user: post["UserEmail"],
                             postId: post.id,
-                            likes: List<String>.from(post["Likes"] ?? []),
+                            likes: List<String>.from(post["Likes"] ?? []), imageURL: null,
 
                           );
                         }

@@ -18,7 +18,7 @@ class ScreenPost extends StatefulWidget {
     required this.message,
     required this.user,
     required this.postId,
-    required this.likes,
+    required this.likes, required imageURL,
   }) : super(key: key);
 
   @override
@@ -159,7 +159,7 @@ class _ScreenPostState extends State<ScreenPost> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[500],
+        color: Colors.grey[700],
         borderRadius: BorderRadius.circular(8),
       ),
       margin: EdgeInsets.only(top: 25, left: 25, right: 25),
@@ -174,11 +174,11 @@ class _ScreenPostState extends State<ScreenPost> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.message),
+                  Text(widget.message,style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      Text(widget.user),
+                      Text(widget.user,style: TextStyle(color: Colors.blue),),
                       GestureDetector(
                         onTap: () {
                           if (isFollowing) {
@@ -227,7 +227,7 @@ class _ScreenPostState extends State<ScreenPost> {
                   CommentButton(onTap: showCommentDialog),
                   const SizedBox(height: 5),
                   Text(
-                    '0',
+                    'comment',
                     style: TextStyle(color: Colors.black),
                   ),
                 ],
@@ -256,6 +256,7 @@ class _ScreenPostState extends State<ScreenPost> {
               );
             },
           ),
+
         ],
       ),
     );
