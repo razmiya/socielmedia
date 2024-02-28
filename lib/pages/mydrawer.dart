@@ -25,7 +25,7 @@ class MyDrawer extends StatelessWidget {
              ),
          ),
           //home list tile
-          MyListTile(icon: Icons.home, text: "H o m e",
+          MyListTile(icon: Icons.home, text: "H O M E",
           onTap: () => Navigator.pop(context),
           ),
           //profile list tile

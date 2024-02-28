@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
   // }
 
   Future<void> _uploadImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
@@ -68,23 +68,28 @@ class _ProfilePageState extends State<ProfilePage> {
       Reference ref = _storage.ref().child('profile_images/${DateTime.now().toString()}');
       UploadTask uploadTask = ref.putFile(_image!);
       TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
-      String imageUrl = await taskSnapshot.ref.getDownloadURL();
 
+       String Url = await taskSnapshot.ref.getDownloadURL();
+       setState(() {
+         imageUrl=Url;
+       });
+       print(imageUrl);
       // Save the image URL into Firestore
-      await _firestore.collection('profile_images').add({
-        'image_url': imageUrl,
-        // Optionally, you can associate the image with a user by storing user ID or email
-        'user_email': widget.email,
-        // You can also include a timestamp or any other relevant data
-        'timestamp': DateTime.now(),
-      });
+      // await _firestore.collection('profiles').add({
+      //   'image_url': imageUrl,
+      //   // Optionally, you can associate the image with a user by storing user ID or email
+      //   'user_email': widget.email,
+      //   // You can also include a timestamp or any other relevant data
+      //   'timestamp': DateTime.now(),
+      // });
 
       print('Image uploaded and URL saved to Firestore: $imageUrl');
     }
   }
 
   Future<void> _saveProfile() async {
-    
+    print(imageUrl);
+    print("/////");
     await _firestore.collection('profiles').add({
       'name': _nameController.text,
       'dob': _dobController.text,
@@ -108,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
     _hobbiesController.clear();
 
     // Optionally, navigate to another page after saving profile
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
   }
 
   @override

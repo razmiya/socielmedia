@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:socielmedia/auth/auth.dart';
 import 'package:socielmedia/auth/loginorregister.dart';
 import 'package:socielmedia/pages/loginpage.dart';
+import 'package:socielmedia/pages/profilepage.dart';
 import 'package:socielmedia/thems/darkthem.dart';
 import 'package:socielmedia/thems/lighttheme.dart';
 

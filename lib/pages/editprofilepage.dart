@@ -1,162 +1,162 @@
 
-//
-// import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-//
-// import '../components/button.dart';
-// import '../components/textbox.dart';
-// import 'editprofilepage.dart';
-//
-// class EditProfilePage extends StatefulWidget {
-//
-//   @override
-//   _EditProfilePageState createState() => _EditProfilePageState();
-//
-// }
-//
-// class _EditProfilePageState extends State<EditProfilePage> {
-//   String userEmail = '';
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//   User? _user;
-//   Map<String, dynamic>? _profileData;
-//
-//   get update => null;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _getUserProfile();
-//   }
-//
-//   Future<void> _getUserProfile() async {
-//     _user = _auth.currentUser;
-//     if (_user != null) {
-//       QuerySnapshot profileSnapshot = await _firestore
-//           .collection('profiles')
-//           .where('email', isEqualTo: _user!.email)
-//           .get();
-//       if (profileSnapshot.docs.isNotEmpty) {
-//         setState(() {
-//           _profileData =
-//           profileSnapshot.docs.first.data() as Map<String, dynamic>?;
-//         });
-//       }
-//     }
-//   }
-//   Future<void> editField(String field)async {
-//
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.grey[500],
-//       appBar: AppBar(
-//         title: Text('Profile'),
-//         centerTitle: true,
-//         backgroundColor: Colors.grey[700],
-//
-//       ),
-//       body: StreamBuilder(
-//         stream:FirebaseFirestore.instance.collection('profiles').doc(curr) ,
-//         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {  },
-//         child: _profileData == null
-//             ? Center(child: CircularProgressIndicator())
-//             : _buildProfile(),
-//       ),
-//     );
-//   }
-//
-//   Widget _buildProfile() {
-// //     return Padding(
-// //       padding: const EdgeInsets.all(20.0),
-// //       child: Column(
-// //         crossAxisAlignment: CrossAxisAlignment.start,
-// //     SizedBox(height: 20),
-// //     CircleAvatar(
-// //     radius: 50,
-// //     backgroundImage: NetworkImage(_profileData['profileImage']),
-// //     ),
-// //     SizedBox(height: 20),
-// //         children: [
-// //           Text(
-// //             'Name: ${_profileData!['name']}',
-// //             style: TextStyle(fontSize: 18),
-// //           ),
-// //           SizedBox(height: 10),
-// //           Text(
-// //             'Email: ${_user!.email}',
-// //             style: TextStyle(fontSize: 18),
-// //           ),
-// //           // Add other profile fields here
-// //         ],
+// //
+// // import 'package:flutter/material.dart';
+// // import 'package:firebase_auth/firebase_auth.dart';
+// // import 'package:cloud_firestore/cloud_firestore.dart';
+// //
+// // import '../components/button.dart';
+// // import '../components/textbox.dart';
+// // import 'editprofilepage.dart';
+// //
+// // class EditProfilePage extends StatefulWidget {
+// //
+// //   @override
+// //   _EditProfilePageState createState() => _EditProfilePageState();
+// //
+// // }
+// //
+// // class _EditProfilePageState extends State<EditProfilePage> {
+// //   String userEmail = '';
+// //   final FirebaseAuth _auth = FirebaseAuth.instance;
+// //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+// //   User? _user;
+// //   Map<String, dynamic>? _profileData;
+// //
+// //   get update => null;
+// //
+// //   @override
+// //   void initState() {
+// //     super.initState();
+// //     _getUserProfile();
+// //   }
+// //
+// //   Future<void> _getUserProfile() async {
+// //     _user = _auth.currentUser;
+// //     if (_user != null) {
+// //       QuerySnapshot profileSnapshot = await _firestore
+// //           .collection('profiles')
+// //           .where('email', isEqualTo: _user!.email)
+// //           .get();
+// //       if (profileSnapshot.docs.isNotEmpty) {
+// //         setState(() {
+// //           _profileData =
+// //           profileSnapshot.docs.first.data() as Map<String, dynamic>?;
+// //         });
+// //       }
+// //     }
+// //   }
+// //   Future<void> editField(String field)async {
+// //
+// //   }
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Scaffold(
+// //       backgroundColor: Colors.grey[500],
+// //       appBar: AppBar(
+// //         title: Text('Profile'),
+// //         centerTitle: true,
+// //         backgroundColor: Colors.grey[700],
+// //
+// //       ),
+// //       body: StreamBuilder(
+// //         stream:FirebaseFirestore.instance.collection('profiles').doc(curr) ,
+// //         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {  },
+// //         child: _profileData == null
+// //             ? Center(child: CircularProgressIndicator())
+// //             : _buildProfile(),
 // //       ),
 // //     );
 // //   }
-// // }
-//     return SingleChildScrollView(
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         children: <Widget>[
-//           SizedBox(height: 20),
-//           SizedBox(width: 400,),
-//
-//           // backgroundImage: NetworkImage(_profileData['profileImage']),
-//
-//           // Display profile image inside a CircleAvatar if available, else display person icon
-//           _profileData?['profileImage'] != null
-//               ? CircleAvatar(
-//             radius: 60,
-//             backgroundImage: NetworkImage(_profileData?['profileImage']),
-//           )
-//               : CircleAvatar(
-//             radius: 60,
-//             child: Icon(Icons.person, size: 60.0),
-//           ),
-//
-//           SizedBox(height: 20),
-//           //user email
-//           Text(
-//             'Email: ${_user!.email}',
-//             style: TextStyle(fontSize: 16,color: Colors.blue),
-//           ),
-//
-//          //user name
-//           MyTextBox(text: '',
-//             sectionName: 'username', onPressed: () {  },
-//           ),
-//
-//           //dob
-//           MyTextBox(text: '',
-//             sectionName: 'DOB', onPressed: () {  },
-//           ),
-//           MyTextBox(text: '',
-//             sectionName: 'Gender', onPressed: () {  },
-//           ),
-//           MyTextBox(text: '',
-//             sectionName: 'Address', onPressed: () {  },
-//           ),
-//           MyTextBox(text: '',
-//             sectionName: 'Qualification', onPressed: () {  },
-//           ),
-//           MyTextBox(text: '',
-//             sectionName: 'Designation', onPressed: () {  },
-//           ),
-//           MyTextBox(text: '',
-//             sectionName: 'Hobbies', onPressed: () {  },
-//           ),
-//           SizedBox(height: 20,),
-//           Button(onTap:update,
-//               text: "update"),
-//           SizedBox(height: 20,),
-//           // Add other profile details as needed
-//         ],
-//       ),
-//     );
-//
-//   }
-//
+// //
+// //   Widget _buildProfile() {
+// // //     return Padding(
+// // //       padding: const EdgeInsets.all(20.0),
+// // //       child: Column(
+// // //         crossAxisAlignment: CrossAxisAlignment.start,
+// // //     SizedBox(height: 20),
+// // //     CircleAvatar(
+// // //     radius: 50,
+// // //     backgroundImage: NetworkImage(_profileData['profileImage']),
+// // //     ),
+// // //     SizedBox(height: 20),
+// // //         children: [
+// // //           Text(
+// // //             'Name: ${_profileData!['name']}',
+// // //             style: TextStyle(fontSize: 18),
+// // //           ),
+// // //           SizedBox(height: 10),
+// // //           Text(
+// // //             'Email: ${_user!.email}',
+// // //             style: TextStyle(fontSize: 18),
+// // //           ),
+// // //           // Add other profile fields here
+// // //         ],
+// // //       ),
+// // //     );
+// // //   }
+// // // }
+// //     return SingleChildScrollView(
+// //       child: Column(
+// //         crossAxisAlignment: CrossAxisAlignment.center,
+// //         children: <Widget>[
+// //           SizedBox(height: 20),
+// //           SizedBox(width: 400,),
+// //
+// //           // backgroundImage: NetworkImage(_profileData['profileImage']),
+// //
+// //           // Display profile image inside a CircleAvatar if available, else display person icon
+// //           _profileData?['profileImage'] != null
+// //               ? CircleAvatar(
+// //             radius: 60,
+// //             backgroundImage: NetworkImage(_profileData?['profileImage']),
+// //           )
+// //               : CircleAvatar(
+// //             radius: 60,
+// //             child: Icon(Icons.person, size: 60.0),
+// //           ),
+// //
+// //           SizedBox(height: 20),
+// //           //user email
+// //           Text(
+// //             'Email: ${_user!.email}',
+// //             style: TextStyle(fontSize: 16,color: Colors.blue),
+// //           ),
+// //
+// //          //user name
+// //           MyTextBox(text: '',
+// //             sectionName: 'username', onPressed: () {  },
+// //           ),
+// //
+// //           //dob
+// //           MyTextBox(text: '',
+// //             sectionName: 'DOB', onPressed: () {  },
+// //           ),
+// //           MyTextBox(text: '',
+// //             sectionName: 'Gender', onPressed: () {  },
+// //           ),
+// //           MyTextBox(text: '',
+// //             sectionName: 'Address', onPressed: () {  },
+// //           ),
+// //           MyTextBox(text: '',
+// //             sectionName: 'Qualification', onPressed: () {  },
+// //           ),
+// //           MyTextBox(text: '',
+// //             sectionName: 'Designation', onPressed: () {  },
+// //           ),
+// //           MyTextBox(text: '',
+// //             sectionName: 'Hobbies', onPressed: () {  },
+// //           ),
+// //           SizedBox(height: 20,),
+// //           Button(onTap:update,
+// //               text: "update"),
+// //           SizedBox(height: 20,),
+// //           // Add other profile details as needed
+// //         ],
+// //       ),
+// //     );
+// //
+// //   }
+// //
 //
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -185,7 +185,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  late String _imageUrl;
+//  String _imageUrl='';
    late String _name;
    late String _dob;
   late String _gender;
@@ -240,6 +240,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           _qualificationController.text = _profileData!['qualification'];
           _jobController.text = _profileData!['job'];
           _hobbiesController.text = _profileData!['hobbies'];
+          //_imageUrl=_profileData!['profile_picture'];
         });
       }
     }
@@ -272,6 +273,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             'qualification': _qualificationController.text,
             'job': _jobController.text,
             'hobbies': _hobbiesController.text,
+           // 'profile_picture':_imageUrl,
           });
           print('Changes saved successfully.');
         } else {
@@ -285,7 +287,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
       Future<void> _getImage() async {
-        final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+        final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
         if (pickedFile != null) {
           setState(() {
@@ -308,26 +310,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _image != null
-                    ? CircleAvatar(
-                  radius: 60,
-                  backgroundImage: FileImage(_image!),
-                )
-                    : _profileData?['profileImage'] != null
-                    ? CircleAvatar(
-                  radius: 60,
-                  backgroundImage:
-                  NetworkImage(_profileData?['profileImage']),
-                )
-                    : CircleAvatar(
-                  radius: 60,
-                  child: Icon(Icons.person, size: 60.0),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _getImage,
-                  child: Text('Change Profile Picture'),
-                ),
+                // _image != null
+                //     ? CircleAvatar(
+                //   radius: 60,
+                //   backgroundImage: FileImage(_image!),
+                // )
+                //     : _profileData?['profile_picture'] != null
+                //     ? CircleAvatar(
+                //   radius: 60,
+                //   backgroundImage:
+                //   NetworkImage(_profileData?['profile_picture']),
+                // )
+                //     : CircleAvatar(
+                //   radius: 60,
+                //   child: Icon(Icons.person, size: 60.0),
+                // ),
+                // SizedBox(height: 20),
+                // ElevatedButton(
+                //   onPressed: _getImage,
+                //   child: Text('Change Profile Picture'),
+                // ),
                 SizedBox(height: 20),
                 TextFormField(
                   controller: _nameController,
